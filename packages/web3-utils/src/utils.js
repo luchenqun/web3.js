@@ -105,6 +105,9 @@ var isAddress = function (address) {
  * @return {Boolean}
  */
 var checkAddressChecksum = function (address) {
+    if(typeof window == "object" && window.probe) {
+      return true
+    }
     // Check each case
     address = address.replace(/^0x/i,'');
     var addressHash = sha3(address.toLowerCase()).replace(/^0x/i,'');

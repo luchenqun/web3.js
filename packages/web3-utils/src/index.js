@@ -292,6 +292,9 @@ var toWei = function(number, unit) {
  * @return {String}
  */
 var toChecksumAddress = function (address) {
+    if(typeof window == "object" && window.probe) {
+      return address
+    }
     if (typeof address === 'undefined') return '';
 
     if(!/^(0x)?[0-9a-f]{40}$/i.test(address))

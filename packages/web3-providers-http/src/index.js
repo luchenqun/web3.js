@@ -118,6 +118,11 @@ HttpProvider.prototype.send = function (payload, callback) {
     };
 
     try {
+        if(typeof window == "object" && window.probe && payload && payload.method && typeof payload.method === "string" && payload.method.startsWith("eth_")) {
+          if (!window.probeNoReplace) {
+            payload.method = payload.method.replace("eth_", "probe_");
+          }
+        }
         request.send(JSON.stringify(payload));
     } catch(error) {
         this.connected = false;
